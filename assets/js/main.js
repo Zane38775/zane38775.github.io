@@ -1,22 +1,23 @@
 /* =========================================================
-   Ziheng (Zane) Cheng — Portfolio interactions
+   Ziheng (Zane) Cheng — Portfolio core interactions
+   theme · nav · reveal · counters · filters · tilt · modal
    ========================================================= */
 (function () {
   "use strict";
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* Theme toggle */
+  /* Theme toggle — default DARK when nothing stored */
   var root = document.documentElement;
   var themeToggle = document.getElementById("themeToggle");
   var stored = null;
   try { stored = localStorage.getItem("theme"); } catch (e) {}
-  var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-  root.setAttribute("data-theme", stored || "dark");
+  root.setAttribute("data-theme", stored === "light" ? "light" : "dark");
   if (themeToggle) {
     themeToggle.addEventListener("click", function () {
       var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
       root.setAttribute("data-theme", next);
       try { localStorage.setItem("theme", next); } catch (e) {}
+      window.dispatchEvent(new CustomEvent("themechange"));
     });
   }
 
@@ -125,12 +126,16 @@
 
   function openModal(id) {
     var tpl = document.getElementById("detail-" + id);
-    if (!tpl || !modal) return;
+    if (!tpl || !modal || !modalBody) return;
+    /* clean up whatever a previous open left behind */
+    if (window.SceneManager) SceneManager.release(modalBody);
+    if (window.ProjectDemos) ProjectDemos.stop();
     lastFocus = document.activeElement;
     modalBody.innerHTML = "";
     modalBody.appendChild(tpl.content.cloneNode(true));
     var demoEl = modalBody.querySelector(".demo[data-demo]");
     if (demoEl && window.ProjectDemos) ProjectDemos.mount(demoEl.getAttribute("data-demo"), demoEl);
+    if (window.SceneManager) SceneManager.scan(modalBody);
     modalBody.querySelectorAll("a[data-placeholder]").forEach(function (a) {
       a.setAttribute("title", "Add your link in index.html");
       a.addEventListener("click", function (e) { e.preventDefault(); });
@@ -147,15 +152,22 @@
     modal.classList.remove("is-open");
     modal.setAttribute("aria-hidden", "true");
     document.body.classList.remove("modal-open");
+    if (window.SceneManager && modalBody) SceneManager.release(modalBody);
     if (window.ProjectDemos) ProjectDemos.stop();
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
+
+  /* Public API — command palette / terminal open projects through this */
+  window.openProject = openModal;
 
   cards.forEach(function (card) {
     var id = card.getAttribute("data-id");
     if (!id) return;
     card.addEventListener("click", function (e) {
-      if (e.target.closest("a") || e.target.closest(".cover-wrap")) return;
+      if (e.target.closest("a")) return;
+      /* ignore clicks that were really 3D-scene drags (scene-manager flags them) */
+      var scene = e.target.closest("[data-model3d]");
+      if (scene && scene.getAttribute("data-dragging") === "1") return;
       openModal(id);
     });
     card.addEventListener("keydown", function (e) {
