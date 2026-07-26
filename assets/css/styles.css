@@ -4,36 +4,40 @@
    Light theme = blueprint paper
    ========================================================= */
 
-/* ---------- Design tokens (dark is DEFAULT) ---------- */
+/* ---------- Design tokens (dark is DEFAULT) — "graphite workstation" ----------
+   Evolved from phosphor-green hacker terminal to the silver-grey industrial
+   aesthetic of customwin: pure neutral black, silver accent (#b8b8b8), zero
+   glow, contrast over luminescence, HUD wireframe feel. */
 :root {
-  --bg: #070b0f;
-  --bg-alt: #0b1118;
-  --surface: #0f151d;
-  --surface-2: #141c26;
-  --border: #1d2938;
-  --border-bright: #2b3b50;
-  --accent: #00e893;
-  --accent-soft: #5cffc0;
-  --accent-2: #4dc9ff;
-  --warn: #ffb454;
-  --danger: #ff5c57;
-  --text: #d7e1ea;
-  --text-soft: #8b9bab;
-  --text-faint: #566575;
-  --accent-ink: #04140c;
+  --bg: #0a0a0b;
+  --bg-alt: #0e0e10;
+  --surface: #131316;
+  --surface-2: #18181c;
+  --border: #26262b;
+  --border-bright: #383840;
+  --accent: #b8b8b8;
+  --accent-soft: #d4d4d4;
+  --accent-2: #6a6a72;
+  --accent-glow: #9a9aa2;
+  --warn: #c8a060;
+  --danger: #c2605a;
+  --text: #e8e8e8;
+  --text-soft: #8e8e94;
+  --text-faint: #5a5a60;
+  --accent-ink: #0a0a0b;
 
-  --cover-a: #0c131b;
-  --cover-b: #101a23;
-  --cover-line: rgba(0, 232, 147, .10);
-  --cover-ink: #00e893;
+  --cover-a: #111114;
+  --cover-b: #16161a;
+  --cover-line: rgba(184, 184, 184, .10);
+  --cover-ink: #b8b8b8;
 
-  --dot: rgba(139, 155, 171, .075);
-  --glow: 0 0 18px rgba(0, 232, 147, .30);
-  --glow-text: 0 0 14px rgba(0, 232, 147, .45);
-  --shadow: 0 1px 2px rgba(0, 0, 0, .45), 0 10px 40px rgba(0, 0, 0, .5);
-  --shadow-lg: 0 24px 70px rgba(0, 0, 0, .65);
+  --dot: rgba(184, 184, 184, .055);
+  --glow: 0 0 18px rgba(184, 184, 184, .12);
+  --glow-text: none;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .5), 0 10px 40px rgba(0, 0, 0, .55);
+  --shadow-lg: 0 24px 70px rgba(0, 0, 0, .7);
 
-  --radius: 10px;
+  --radius: 8px;
   --maxw: 1180px;
   --ease: cubic-bezier(.22, 1, .36, 1);
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -42,37 +46,38 @@
 
 html[data-theme="dark"] {
   /* dark is the :root default — attribute kept as an explicit alias */
-  --bg: #070b0f;
+  --bg: #0a0a0b;
 }
 
-/* ---------- Light theme: "blueprint paper" ---------- */
+/* ---------- Light theme: "graphite paper" (neutral, was blueprint green) ---------- */
 html[data-theme="light"] {
-  --bg: #f2f5f4;
-  --bg-alt: #e9efec;
+  --bg: #f4f4f5;
+  --bg-alt: #ebebed;
   --surface: #ffffff;
-  --surface-2: #f4f8f6;
-  --border: #d2dcd7;
-  --border-bright: #b3c3bc;
-  --accent: #009e6b;
-  --accent-soft: #007d55;
-  --accent-2: #0077cc;
-  --warn: #a86300;
-  --danger: #c23730;
-  --text: #101820;
-  --text-soft: #44535d;
-  --text-faint: #6c7d88;
-  --accent-ink: #04140c;
+  --surface-2: #f6f6f7;
+  --border: #d4d4d8;
+  --border-bright: #b0b0b6;
+  --accent: #3a3a40;
+  --accent-soft: #18181c;
+  --accent-2: #6a6a72;
+  --accent-glow: #5a5a62;
+  --warn: #8a5a1a;
+  --danger: #9a3a35;
+  --text: #18181c;
+  --text-soft: #4a4a52;
+  --text-faint: #7a7a82;
+  --accent-ink: #ffffff;
 
-  --cover-a: #e8efeb;
-  --cover-b: #dbe6e0;
-  --cover-line: rgba(0, 158, 107, .14);
-  --cover-ink: #009e6b;
+  --cover-a: #ececee;
+  --cover-b: #e0e0e3;
+  --cover-line: rgba(58, 58, 64, .14);
+  --cover-ink: #3a3a40;
 
-  --dot: rgba(16, 24, 32, .07);
-  --glow: 0 0 14px rgba(0, 158, 107, .22);
+  --dot: rgba(24, 24, 28, .07);
+  --glow: 0 0 14px rgba(58, 58, 64, .14);
   --glow-text: none;
-  --shadow: 0 1px 2px rgba(16, 24, 32, .05), 0 8px 30px rgba(16, 24, 32, .08);
-  --shadow-lg: 0 20px 60px rgba(16, 24, 32, .15);
+  --shadow: 0 1px 2px rgba(24, 24, 28, .06), 0 8px 30px rgba(24, 24, 28, .1);
+  --shadow-lg: 0 20px 60px rgba(24, 24, 28, .16);
 }
 
 /* ---------- Base ---------- */

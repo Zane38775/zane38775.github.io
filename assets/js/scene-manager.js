@@ -108,8 +108,8 @@
     function readPalette() {
       var s = getComputedStyle(document.documentElement);
       return {
-        accent: cssVar(s, "--accent", "#00e893"),
-        accent2: cssVar(s, "--accent-2", "#4dc9ff"),
+        accent: cssVar(s, "--accent-glow", "") || cssVar(s, "--accent", "#9a9aa2"),
+        accent2: cssVar(s, "--accent-2", "#6a6a72"),
         warn: cssVar(s, "--warn", "#ffb454"),
         danger: cssVar(s, "--danger", "#ff5c57"),
         ink: cssVar(s, "--text", "#d7e1ea"),
