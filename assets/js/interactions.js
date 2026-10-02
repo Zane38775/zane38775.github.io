@@ -740,7 +740,7 @@
         break;
 
       case "whoami":
-        termLine("ziheng \"zane\" cheng — final-year @ HKUST", "ok");
+        termLine("ziheng \"zane\" cheng — founder @ VIBOO · HKUST '26", "ok");
         termLine("embedded systems · algorithms · computer vision");
         break;
 
@@ -785,7 +785,7 @@
 
       case "cat":
         if (arg === "about.txt") {
-          termLine("Final-year student at HKUST working across embedded");
+          termLine("Founder of VIBOO — music systems for hosted gatherings");
           termLine("systems, algorithms and computer vision. Everything on");
           termLine("this site is hand-rolled — no frameworks, no build step.");
           termLine("'ls' for the project list.");
